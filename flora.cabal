@@ -69,6 +69,7 @@ library
     Flora.Model.Release
     Flora.Model.Release.Orphans
     Flora.Model.Requirement
+    Flora.Model.Session
     Flora.Model.User
     Flora.Publish
     FloraWeb.Server
@@ -93,6 +94,7 @@ library
     , blaze-builder
     , bytestring                 ^>=0.10
     , Cabal                      ^>=3
+    , clientsession              ^>=0.9
     , clock                      ^>=0.8
     , cmark-gfm                  ^>=0.2
     , colourista                 ^>=0.1
