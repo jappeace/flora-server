@@ -20,5 +20,5 @@ mkErrorPage ta template = runIdentity $
 rendered :: FloraHTML -> FloraHTML
 rendered target = do
   header
-  target
+  main_ [] target
   footer

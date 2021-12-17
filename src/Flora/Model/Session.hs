@@ -1,4 +1,5 @@
 module Flora.Model.Session where
+
 import Data.Text
 import Data.Time
 import Data.UUID
@@ -30,3 +31,6 @@ insertSession = insert @UserSession
 
 deleteSession :: UserSessionId -> DBT IO ()
 deleteSession sessionId = delete @UserSession (Only sessionId)
+
+getUserSession :: UserSessionId -> DBT IO (Maybe UserSession)
+getUserSession sessionId = selectById @UserSession (Only sessionId)

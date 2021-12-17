@@ -26,6 +26,7 @@ import Web.Cookie
 
 import Flora.Environment
 import Flora.Model.User
+import Flora.Model.Session
 
 type instance AuthServerData (AuthProtect "cookie-auth") = Maybe User
 
@@ -45,6 +46,7 @@ authHandler :: FloraEnv -> AuthHandler Request (Maybe User)
 authHandler floraEnv = mkAuthHandler handler
   where
     throw401 msg = throwError $ err401 { errBody = msg }
+    pool = floraEnv ^. #pool
     handler :: Request -> Handler (Maybe User)
     handler req = do
       case lookup "cookie" $ requestHeaders req of
@@ -55,4 +57,10 @@ authHandler floraEnv = mkAuthHandler handler
             Just i ->
               case fromASCIIBytes i of
                 Nothing  -> throw401 "Invalid token in cookie"
-                Just uid -> Just <$> lookupUser (floraEnv ^. #pool) (UserId uid)
+                Just sessionId -> do
+                  sessionResult <- runExceptT $ liftIO $ withPool pool $ getUserSession (UserSessionId sessionId)
+                  case sessionResult of
+                    Left _ -> throwError err500
+                    Right Nothing -> pure Nothing
+                    Right (Just userSession) -> 
+                      Just <$> lookupUser pool (userSession ^. #userId)

@@ -70,7 +70,7 @@ ogTags :: FloraHTML
 ogTags = do
       assigns <- ask
       meta_ [property_ "og:title", content_ (getTitle assigns)]
-      meta_ [property_ "og:site_name", content_ "Hex"]
+      meta_ [property_ "og:site_name", content_ "Flora"]
       meta_ [property_ "og:description", content_ (getDescription assigns) ]
       meta_ [property_ "og:url", content_ (getCanonicalURL assigns)]
       meta_ [property_ "og:image", content_ (getImage assigns)]

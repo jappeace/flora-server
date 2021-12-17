@@ -43,8 +43,7 @@ data Routes' mode = Routes'
 
 server :: ToServant Routes' (AsServerT FloraPageM)
 server = genericServerT Routes'
-  { --new = undefined
-    show = showHandler
+  { show = showHandler
   , showVersion = showVersionHandler
   }
 

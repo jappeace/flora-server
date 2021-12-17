@@ -17,6 +17,7 @@ import qualified FloraWeb.Templates.Pages.Home as Home
 import FloraWeb.Templates.Types
 import Network.HTTP.Types
 import Optics.Core
+import qualified FloraWeb.Server.Pages.Sessions as Sessions
 
 type Routes = ToServantApi Routes'
 
@@ -24,6 +25,7 @@ data Routes' mode = Routes'
   { home     :: mode :- Get '[HTML] (Html ())
   , about    :: mode :- "about" :> Get '[HTML] (Html ())
   , admin    :: mode :- "admin" :> Get '[HTML] (Html ())
+  , login    :: mode :- "login" :> Sessions.Routes
   , packages :: mode :- "packages" :> Packages.Routes
   }
   deriving stock (Generic)
@@ -33,6 +35,7 @@ server = genericServerT Routes'
   { home = homeHandler
   , about = aboutHandler
   , admin = ensureUser adminHandler
+  , login = Sessions.server
   , packages = Packages.server
   }
 

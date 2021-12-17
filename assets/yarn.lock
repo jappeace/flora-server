@@ -56,6 +56,13 @@
   resolved "https://registry.yarnpkg.com/@ryangjchandler/alpine-clipboard/-/alpine-clipboard-2.1.0.tgz#61a0e93ed76ac6f8c2fe8837a1f83eb0c30b0090"
   integrity sha512-k1L8qTf2zzubP3Lpd0tBRUF3HXQ9j9euZ+QF4pQtRkdjOWssykpPcSlhkx2/daji5NiJCgV3j+cu2FS+MrKIeQ==
 
+"@tailwindcss/forms@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/forms/-/forms-0.4.0.tgz#a46715e347a32d216a3973eb67473bd29ae3798e"
+  integrity sha512-DeaQBx6EgEeuZPQACvC+mKneJsD8am1uiJugjgQK1+/Vt+Ai0GpFBC2T2fqnUad71WgOxyrZPE6BG1VaI6YqfQ==
+  dependencies:
+    mini-svg-data-uri "^1.2.3"
+
 "@tailwindcss/nesting@^0.0.0-insiders.565cd3e":
   version "0.0.0-insiders.565cd3e"
   resolved "https://registry.yarnpkg.com/@tailwindcss/nesting/-/nesting-0.0.0-insiders.565cd3e.tgz#cdfe802dd2900cd6b4e99006c7d13b21132d72fc"
@@ -1341,6 +1348,11 @@ micromatch@^4.0.4:
   dependencies:
     braces "^3.0.1"
     picomatch "^2.2.3"
+
+mini-svg-data-uri@^1.2.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/mini-svg-data-uri/-/mini-svg-data-uri-1.4.3.tgz#43177b2e93766ba338931a3e2a84a3dfd3a222b8"
+  integrity sha512-gSfqpMRC8IxghvMcxzzmMnWpXAChSA+vy4cia33RgerMS8Fex95akUyQZPbxJJmeBGiGmK7n/1OpUX8ksRjIdA==
 
 minimatch@^3.0.4:
   version "3.0.4"
