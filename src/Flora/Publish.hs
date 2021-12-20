@@ -2,10 +2,9 @@
 module Flora.Publish where
 
 import Database.PostgreSQL.Transact
-import Optics.Core
 
 import Control.Monad
-import Flora.Model.Package
+import qualified Flora.Model.Package as PP
 import Flora.Model.Release (Release (..), insertRelease)
 import Flora.Model.Requirement (Requirement, insertRequirement)
 import Flora.Model.User (User)
@@ -13,17 +12,17 @@ import Flora.Model.User (User)
 {- TODO: Audit log of the published package
    TODO: Publish artifacts
 -}
-publishPackage :: [Requirement] -> Release -> Package -> User -> DBT IO ()
+publishPackage :: [Requirement] -> Release -> PP.Package -> User -> DBT IO ()
 publishPackage requirements release package _user =
-  getPackageById (package ^. #packageId)
+  PP.getPackageById (PP.packageId package)
     >>= \case
           Nothing -> do
-            createPackage package
+            PP.createPackage package
             insertRelease release
             forM_ requirements insertRequirement
-            refreshDependents
+            PP.refreshDependents
           Just existingPackage -> do
-            createPackage existingPackage
+            PP.createPackage existingPackage
             insertRelease release
             forM_ requirements insertRequirement
-            refreshDependents
+            PP.refreshDependents
